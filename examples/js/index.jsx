@@ -3,6 +3,17 @@ var React = require('react'),
     ReactDOM = require('react-dom'),
     Tinderable = require('../../lib/tinderable.js');
 
+const Card = React.createClass({
+    render: function () {
+        return (
+            <div className="card">
+                <span>Question Text</span>
+                <h1>{this.props.title}</h1>
+            </div>
+        )
+    }
+});
+
 var cardsData = [
     {
         title: 'A wonderful day',
@@ -31,6 +42,12 @@ var cardsData = [
 ];
 
 ReactDOM.render(
-    <Tinderable initialCardsData={cardsData} />,
+    <Tinderable>
+        {cardsData.map(question => {
+            return (
+                <Card title={question.text} />
+            )
+        })}
+    </Tinderable >,
     document.getElementById('master-root')
 );
